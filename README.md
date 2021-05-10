@@ -14,3 +14,15 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## Used libraries/concepts
+- UUID for random string generation
+- SharedPreferences to persist key values
+- sqflite - to persist data in local db
+- firebase-firestore - to keep data in sync across devices
+
+## to do
+- add dependency injection
+- modularise UI
+- add view model
+- add test
