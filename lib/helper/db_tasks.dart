@@ -1,8 +1,10 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:todoey/db/AppDatabase.dart';
 import 'package:todoey/models/task.dart';
 import 'package:todoey/models/task_group.dart';
+
+const TABLE_TASK_GROUP = "task_group";
+const TABLE_TASK = "task";
 
 Future<Database> getDatabase({String name = "todoey_database"}) async {
   return openDatabase(
