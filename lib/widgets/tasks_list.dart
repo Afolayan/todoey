@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todoey/helper/db_tasks.dart';
+import 'package:todoey/main.dart';
 import 'package:todoey/models/task.dart';
 import 'package:todoey/widgets/tasks_tile.dart';
 
@@ -23,15 +23,12 @@ class _TasksListState extends State<TasksList> {
             taskTitle: task.name,
             isChecked: task.isDone,
             checkBoxCallback: (checkboxState) async {
-              task.isDone = checkboxState;
-              await updateTask(task);
+              await viewModel.updateTask(task, checkboxState);
               setState(() {});
-              //taskData.updateTaskDone(index, checkboxState);
             },
             longPressCallback: () async {
-              await deleteTask(task);
+              await viewModel.deleteTask(task);
               setState(() {});
-              //taskData.deleteTask(index);
             },
           );
         });

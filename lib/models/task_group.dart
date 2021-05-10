@@ -2,7 +2,6 @@ import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
-import 'package:todoey/helper/db_tasks.dart';
 import 'package:uuid/uuid.dart';
 
 import 'task.dart';
@@ -70,17 +69,5 @@ class TaskGroup {
       updatedDate:
           DateTime.fromMicrosecondsSinceEpoch(map["updatedDate"] * 1000),
     );
-  }
-
-  Future fetchTaskList() async {
-    await taskGroupTasks(groupId).then((value) {
-      if (value == null) {
-        _taskList = [];
-      } else {
-        _taskList = value;
-      }
-    }, onError: (error) {
-      _taskList = [];
-    });
   }
 }

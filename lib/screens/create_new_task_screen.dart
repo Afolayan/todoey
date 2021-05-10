@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:todoey/helper/db_tasks.dart';
-import 'package:todoey/models/task_group.dart';
+import 'package:todoey/main.dart';
 
 class CreateNewTaskScreen extends StatelessWidget {
   @override
@@ -43,13 +42,11 @@ class CreateNewTaskScreen extends StatelessWidget {
               ),
               onPressed: () {
                 if (newTaskText != null && newTaskText.isNotEmpty) {
-                  var newGroup = TaskGroup.newGroup(newTaskText);
-
-                  insertTaskGroup(newGroup).then((value) {
+                  viewModel.createNewTaskGroup(newTaskText).then((value) {
                     Fluttertoast.showToast(
                         msg: "New task list created successfully",
                         toastLength: Toast.LENGTH_SHORT);
-                    Navigator.pop(context, newGroup);
+                    Navigator.pop(context, value);
                   }, onError: (error) {
                     Fluttertoast.showToast(
                         msg: "Error creating new task list created",

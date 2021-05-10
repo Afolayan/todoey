@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todoey/helper/db_tasks.dart';
+import 'package:todoey/main.dart';
 import 'package:todoey/models/task_group.dart';
 
 import 'create_new_task_screen.dart';
@@ -22,7 +22,7 @@ class _TaskGroupScreenState extends State<TaskGroupScreen> {
   }
 
   void fetchList() {
-    taskGroups().then((value) {
+    viewModel.fetchAllTaskGroups().then((value) {
       setState(() {
         _fabVisibility = value.isNotEmpty;
 

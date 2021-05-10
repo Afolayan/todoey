@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todoey/helper/db_tasks.dart';
-import 'package:todoey/models/task.dart';
+import 'package:todoey/main.dart';
 import 'package:todoey/models/task_data.dart';
 import 'package:todoey/screens/tasks_screen.dart';
 
@@ -51,9 +50,9 @@ class AddTaskScreen extends StatelessWidget {
                 ),
                 onPressed: () async {
                   if (newTaskText != null && newTaskText.isNotEmpty) {
-                    var newTask =
-                        Task.newTask(name: newTaskText, groupId: groupId);
-                    await insertTask(newTask).then((value) {
+                    await viewModel
+                        .createNewTask(newTaskText, groupId)
+                        .then((value) {
                       Navigator.pushReplacementNamed(context, TaskScreen.id);
                     });
                   } else {

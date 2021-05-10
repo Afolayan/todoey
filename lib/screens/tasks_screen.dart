@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:todoey/helper/db_tasks.dart';
 import 'package:todoey/helper/preference_helper.dart';
+import 'package:todoey/main.dart';
 import 'package:todoey/models/task_group.dart';
 import 'package:todoey/screens/task_screen_body.dart';
 
@@ -27,10 +27,10 @@ class _TaskScreenState extends State<TaskScreen> {
     }
     String groupId = await getLastGroupId();
     if (groupId != null) {
-      taskGroup = await getGroupTaskById(groupId);
+      taskGroup = await viewModel.getGroupTask(groupId);
     } else {
-      await taskGroups().then((value) async {
-        taskGroup = value[0];
+      await viewModel.getFirstTaskGroup().then((value) async {
+        taskGroup = value;
       });
     }
     await saveLastGroupId(taskGroup.groupId);
