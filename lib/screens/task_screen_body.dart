@@ -67,7 +67,7 @@ class _TaskScreenBodyState extends State<TaskScreenBody> {
                         child: Icon(
                           Icons.list,
                           size: 30,
-                          color: Colors.lightBlueAccent,
+                          color: Colors.indigoAccent,
                         ),
                         backgroundColor: Colors.white,
                         radius: 30,
@@ -88,7 +88,7 @@ class _TaskScreenBodyState extends State<TaskScreenBody> {
                       "Todoey",
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 50.0,
+                          fontSize: 40.0,
                           fontWeight: FontWeight.w700),
                     ),
                     Visibility(
@@ -98,7 +98,7 @@ class _TaskScreenBodyState extends State<TaskScreenBody> {
                         "${widget.taskGroup.name ?? " "}",
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 18.0,
+                            fontSize: 24.0,
                             fontWeight: FontWeight.w400),
                       ),
                     ),

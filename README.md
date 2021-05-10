@@ -23,6 +23,6 @@ samples, guidance on mobile development, and a full API reference.
 
 ## to do
 - add dependency injection
-- modularise UI
 - add view model
+- modularise UI
 - add test

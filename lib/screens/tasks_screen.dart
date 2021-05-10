@@ -47,11 +47,11 @@ class _TaskScreenState extends State<TaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlueAccent,
+      backgroundColor: Colors.indigoAccent,
       floatingActionButton: Visibility(
         //visible: _newTaskFabVisibility,
         child: FloatingActionButton(
-          backgroundColor: Colors.lightBlueAccent,
+          backgroundColor: Colors.indigoAccent,
           child: Icon(Icons.add),
           onPressed: () async {
             await showModalBottomSheet(
