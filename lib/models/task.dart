@@ -1,7 +1,8 @@
 import 'package:uuid/uuid.dart';
 
 class Task {
-  String id;
+  int id;
+  String taskId;
   String groupId;
   final String name;
   bool isDone = false;
@@ -9,14 +10,15 @@ class Task {
 
   Task(
       {this.id,
+      this.taskId,
       this.name,
       this.isDone = false,
       this.groupId,
       this.createdDate});
 
-  static Task newTask(String name, String groupId) {
+  static Task newTask({String name, String groupId}) {
     return Task(
-      id: Uuid().v4(),
+      taskId: Uuid().v4(),
       name: name,
       groupId: groupId,
       createdDate: DateTime.now(),
@@ -30,20 +32,23 @@ class Task {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
+      'taskId': taskId,
       'groupId': groupId,
       'name': name,
-      'isDone': isDone,
-      'createdDate': createdDate.millisecond
+      'isDone': isDone ? 1 : 0,
+      'createdDate': createdDate.millisecondsSinceEpoch
     };
   }
 
   static Task fromMap(Map<String, dynamic> map) {
     return Task(
       id: map["id"],
+      taskId: map["taskId"],
       groupId: map["groupId"],
       name: map["name"],
-      isDone: map["isDone"],
-      createdDate: DateTime.parse(map["createdDate"].toString()),
+      isDone: map["isDone"] == 1,
+      createdDate:
+          DateTime.fromMicrosecondsSinceEpoch(map["createdDate"] * 1000),
     );
   }
 }

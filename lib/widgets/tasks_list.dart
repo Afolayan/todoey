@@ -1,29 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:todoey/models/task_data.dart';
+import 'package:todoey/helper/db_tasks.dart';
+import 'package:todoey/models/task.dart';
 import 'package:todoey/widgets/tasks_tile.dart';
 
-class TasksList extends StatelessWidget {
+class TasksList extends StatefulWidget {
+  final List<Task> taskList;
+
+  TasksList(this.taskList);
+
+  @override
+  _TasksListState createState() => _TasksListState();
+}
+
+class _TasksListState extends State<TasksList> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<TaskData>(
-      builder: (context, taskData, child) {
-        return ListView.builder(
-            itemCount: taskData.tasksCount,
-            itemBuilder: (context, index) {
-              var task = taskData.tasks[index];
-              return TaskTile(
-                taskTitle: task.name,
-                isChecked: task.isDone,
-                checkBoxCallback: (checkboxState) {
-                  taskData.updateTaskDone(index, checkboxState);
-                },
-                longPressCallback: () {
-                  taskData.deleteTask(index);
-                },
-              );
-            });
-      },
-    );
+    return ListView.builder(
+        itemCount: widget.taskList.length,
+        itemBuilder: (context, index) {
+          var task = widget.taskList[index];
+          return TaskTile(
+            taskTitle: task.name,
+            isChecked: task.isDone,
+            checkBoxCallback: (checkboxState) async {
+              task.isDone = checkboxState;
+              await updateTask(task);
+              setState(() {});
+              //taskData.updateTaskDone(index, checkboxState);
+            },
+            longPressCallback: () async {
+              await deleteTask(task);
+              setState(() {});
+              //taskData.deleteTask(index);
+            },
+          );
+        });
   }
 }
